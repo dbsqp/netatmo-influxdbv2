@@ -16,8 +16,12 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* 
 
-# RUN pip install setuptools
+# set venv
+RUN python3 -m venv docker_env
+RUN . docker_env/bin/activate
 RUN python3 -m venv --system-site-packages /usr/local
+
+# RUN pip install setuptools
 RUN pip3 install --break-system-packages pytz influxdb-client requests lnetatmo
 
 # Environment vars
